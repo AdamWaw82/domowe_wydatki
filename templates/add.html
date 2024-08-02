@@ -1,59 +1,71 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formularz Wydatków Rodzinnych</title>
-    <!-- Link do Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<!--div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExpenseModalLabel">Dodaj nowy wydatek</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addExpenseForm" action="/submit-expense" method="post">
+                    {{ form.hidden_tag() }}
+                    {% for field in form if field.widget.input_type != 'hidden' %}
+                    <div class="form-group">
+                        {{ field.label }} {% if field.flags.required %}*{% endif %}
+                        {{ field(class_="form-control")}}
+                    </div>
+                    {% endfor %}
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success">Dodaj Wydatek</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div!-->
+<div class="modal fade" id="addExpenseModal" tabindex="-1" role="dialog" aria-labelledby="addExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExpenseModalLabel">Dodaj nowy wydatek</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addExpenseForm" action="/submit-expense" method="post">
+                    <div class="form-group">
+                        <label for="date">Data:</label>
+                        <input type="date" id="date" name="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Kategoria:</label>
+                        <select id="category" name="category" class="form-control" required>
+                            <option value="">Wybierz kategorię</option>
+                            <option value="food">Jedzenie</option>
+                            <option value="transport">Transport</option>
+                            <option value="utilities">Rachunki</option>
+                            <option value="entertainment">Rozrywka</option>
+                            <option value="other">Inne</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Opis:</label>
+                        <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Kwota:</label>
+                        <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+                    </div>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-center">
-                    <h2>Formularz Wydatków Rodzinnych</h2>
-                </div>
-                <div class="card-body">
-                    <form action="/submit-expense" method="post">
-                        <div class="form-group">
-                            <label for="date">Data:</label>
-                            <input type="date" id="date" name="date" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="category">Kategoria:</label>
-                            <select id="category" name="category" class="form-control" required>
-                                <option value="">Wybierz kategorię</option>
-                                <option value="food">Jedzenie</option>
-                                <option value="transport">Transport</option>
-                                <option value="utilities">Rachunki</option>
-                                <option value="entertainment">Rozrywka</option>
-                                <option value="other">Inne</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Opis:</label>
-                            <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="amount">Kwota:</label>
-                            <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
-                        </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-success">Dodaj Wydatek</button>
-                        </div>
-                    </form>
-                </div>
+
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-success">Dodaj Wydatek</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Linki do Bootstrap JS i jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>

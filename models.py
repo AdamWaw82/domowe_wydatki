@@ -16,3 +16,16 @@ class Wydatki():
 
     def add(self, data):
         self.wydatki_list.append(data)
+
+    def create(self, data):
+        data.pop('csrf_token')
+        self.wydatki_list.append(data)
+
+    def save_all(self):
+        with open("wydatki.json", "w") as f:
+            json.dump(self.wydatki_list, f, default=str)
+
+    def update(self, id, data):
+        data.pop('csrf_token')
+        self.wydatki_list[id] = data
+        self.save_all()

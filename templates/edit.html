@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="modal fade" id="editExpenseModal" tabindex="-1" role="dialog" aria-labelledby="editExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editExpenseModalLabel">Edytuj Wydatek</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editExpenseForm" action="/edit-expense" method="post">
+                    <div class="form-group">
+                        <label for="editDate">Data:</label>
+                        <input type="date" id="editDate" name="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editCategory">Kategoria:</label>
+                        <select id="editCategory" name="category" class="form-control" required>
+                            <option value="">Wybierz kategorię</option>
+                            <option value="food">Jedzenie</option>
+                            <option value="transport">Transport</option>
+                            <option value="utilities">Rachunki</option>
+                            <option value="entertainment">Rozrywka</option>
+                            <option value="other">Inne</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Opis:</label>
+                        <textarea id="editDescription" name="description" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAmount">Kwota:</label>
+                        <input type="number" id="editAmount" name="amount" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
