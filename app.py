@@ -3,6 +3,8 @@ from flask import Flask, render_template, redirect, request, url_for
 from forms import WydatekForm
 from models import Wydatki
 
+app = Flask(__name__)
+
 
 def create_app():
     app = Flask(__name__)
@@ -24,7 +26,7 @@ def create_app():
     @app.route("/delete", methods=["POST"])
     def delete():
         if request.method == "POST":
-            wydatek_id = int(request.form.get('index')) -1
+            wydatek_id = int(request.form.get('index')) - 1
             wydatki.remove(wydatek_id)
             wydatki.save_all()
             return redirect(url_for("index"))
@@ -40,7 +42,6 @@ def create_app():
                 return redirect(url_for("index"))
 
     return app
-
 
 
 if __name__ == "__main__":
