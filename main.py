@@ -13,8 +13,6 @@ def create_app():
     @app.route("/", methods=["GET", "POST"])
     def index():
         form = WydatekForm()
-        error = ""
-
         if request.method == "POST":
             if form.validate_on_submit():
                 wydatki.create(form.data)
@@ -23,6 +21,23 @@ def create_app():
 
         return render_template("index.html", form=form, lista_wydatkow=wydatki.get_all(), error=error)
 
+    @app.route("/delete", methods=["POST"])
+    def delete():
+        if request.method == "POST":
+            wydatek_id = int(request.form.get('index')) -1
+            wydatki.remove(wydatek_id)
+            wydatki.save_all()
+            return redirect(url_for("index"))
+
+    @app.route("/edit", methods=["POST"])
+    def edit():
+        if request.method == "POST":
+            wydatek_id = int(request.form.get('index')) - 1
+            form = WydatekForm(data=request.form)
+
+            if form.validate_on_submit():
+                wydatki.update(wydatek_id, form.data)
+                return redirect(url_for("index"))
 
     return app
 

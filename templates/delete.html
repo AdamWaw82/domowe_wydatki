@@ -1,0 +1,24 @@
+<div class="modal fade" id="deleteExpenseModal" tabindex="-1" role="dialog" aria-labelledby="deleteExpenseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteExpenseModalLabel">Podgląd Wydatku</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="deleteExpenseForm" action="/delete" method="post"  >
+                    <p><strong>Data:</strong> <span id="deleteDate"></span></p>
+                    <p><strong>Kategoria:</strong> <span id="deleteCategory"></span></p>
+                    <p><strong>Opis:</strong><span id="deleteDescription"></span></p>
+                    <p><strong>Kwota:</strong><span id="deleteAmount"></span> PLN</p>
+                    <input type="hidden"  name="index" />
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Usuń wpis</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

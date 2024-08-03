@@ -7,6 +7,7 @@ from wtforms.validators import DataRequired
 
 
 class WydatekForm(FlaskForm):
+
     date = DateField("Data", validators=[DataRequired()])
     kategoria = SelectField('Kategoria', coerce=str, choices=[
         ("", 'Wybierz kategorię'),

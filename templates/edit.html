@@ -8,14 +8,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editExpenseForm" action="/edit-expense" method="post">
+                <form id="editExpenseForm" action="/edit" method="post">
+                    {{ form.hidden_tag() }}
                     <div class="form-group">
                         <label for="editDate">Data:</label>
                         <input type="date" id="editDate" name="date" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="editCategory">Kategoria:</label>
-                        <select id="editCategory" name="category" class="form-control" required>
+                        <select id="editCategory" name="kategoria" class="form-control" required>
                             <option value="">Wybierz kategorię</option>
                             <option value="food">Jedzenie</option>
                             <option value="transport">Transport</option>
@@ -26,12 +27,13 @@
                     </div>
                     <div class="form-group">
                         <label for="editDescription">Opis:</label>
-                        <textarea id="editDescription" name="description" class="form-control" rows="4" required></textarea>
+                        <textarea id="editDescription" name="opis" class="form-control" rows="4" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="editAmount">Kwota:</label>
-                        <input type="number" id="editAmount" name="amount" class="form-control" step="0.01" required>
+                        <input type="number" id="editAmount" name="kwota" class="form-control" step="0.01" required>
                     </div>
+                    <input type="hidden" name="index" />
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
                     </div>

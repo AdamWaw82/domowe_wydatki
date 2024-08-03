@@ -25,6 +25,12 @@ class Wydatki():
         with open("wydatki.json", "w") as f:
             json.dump(self.wydatki_list, f, default=str)
 
+    def remove(self, id):
+        del self.wydatki_list[id]
+
+    def get(self, id):
+        return self.wydatki_list[id]
+
     def update(self, id, data):
         data.pop('csrf_token')
         self.wydatki_list[id] = data
