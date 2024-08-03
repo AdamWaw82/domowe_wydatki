@@ -1,7 +1,7 @@
 # Domowe Wydatki
 
 ## Opis
-To jest prosta aplikacja Flask do zarządzania wydatkami. Umożliwia dodawanie, edytowanie i usuwanie wydatków.
+Aplikacja Flask do zarządzania wydatkami. Umożliwia dodawanie, edytowanie i usuwanie wydatków.
 
 ## Wymagania
 - Python 3.6 lub nowszy
