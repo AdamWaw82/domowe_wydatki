@@ -14,4 +14,8 @@ Najpierw musisz sklonować repozytorium na swój lokalny komputer:
 ```sh
 git clone https://github.com/AdamWaw82/domowe_wydatki.git
 cd domowe_wydatki
-start.bat
+```
+
+### Krok 2: Uruchom przeglądarkę
+
+Otwórz przeglądarkę i wpisz w adresie http://127.0.0.1:5000
