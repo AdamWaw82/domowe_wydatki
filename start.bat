@@ -18,6 +18,5 @@ IF EXIST requirements.txt (
 )
 
 python app.py
-start http://127.0.0.1:5000/
 
 deactivate
