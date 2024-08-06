@@ -1,51 +1,106 @@
 $( document ).ready(function() {
+
+$.get( "/api/v1/wydatki/", function( data ) {
+ data = JSON.parse(data)
+ listBody = $("#listBody")
+ html = ""
+    for (i in data) {
+        html += "<tr><td>"+data[i].date+"</td><td>"+data[i].kategoria+"</td><td>"+data[i].opis+"</td><td>"+data[i].kwota+"</td><td>" +
+                "<button class='btn btn-info btn-sm' data-toggle='modal' data-target='#viewExpenseModal'    data-index='"+i+"'>Podgląd</button>"+
+                "<button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editExpenseModal' data-index='"+i+"'>Edytuj</button>"+
+                "<button class='btn btn-danger btn-sm'  data-toggle='modal' data-target='#deleteExpenseModal' data-index='"+i+"' >Usuń</button>"+
+            "</td></tr>"
+
+    }
+listBody.html(html)
+});
+
+
+$("#deleteExpenseForm").on("submit", function(event){
+    event.preventDefault();
+    var button = $("#deleteSubmit");
+    var index = button.data('index');
+    var modal = $(this);
+
+    $.ajax({
+       url: '/api/v1/wydatki/' + index,
+       type: 'DELETE',
+       success: function(response) {
+            if (response.result)
+                window.location.reload();
+       }
+    });
+})
+
+$("#editExpenseForm").on("submit", function(event){
+    event.preventDefault();
+    var button = $("#editSubmit");
+    var index = button.data('index');
+    var modal = $(this);
+
+    var data_serialize = $(this).serializeArray()
+    var data = {}
+    for (i in data_serialize){
+        data[data_serialize[i]["name"]] = data_serialize[i]["value"]
+    }
+
+    $.ajax({
+       url: '/api/v1/wydatki/' + index,
+       type: 'PUT',
+       contentType: "application/json",
+       data: JSON.stringify(data),
+       success: function(response) {
+            if (response.result)
+                window.location.reload();
+       }
+    });
+})
+
+
 $('#viewExpenseModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var date = button.data('date');
-        var category = button.data('category');
-        var description = button.data('description');
-        var amount = button.data('amount');
+    var button = $(event.relatedTarget);
+    var index = button.data('index');
+    var modal = $(this);
+    $.get( "/api/v1/wydatki/"+index, function( data ) {
+        wydatek = JSON.parse(data)
+        modal.find('#viewDate').text(wydatek.date);
+        modal.find('#viewCategory').text(wydatek.kategoria);
+        modal.find('#viewDescription').text(wydatek.opis);
+        modal.find('#viewAmount').text(wydatek.kwota);
 
-        var modal = $(this);
-        modal.find('#viewDate').text(date);
-        modal.find('#viewCategory').text(category);
-        modal.find('#viewDescription').text(description);
-        modal.find('#viewAmount').text(amount);
-    });
+    })
+});
 
-    $('#editExpenseModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var date = button.data('date');
-        var category = button.data('category');
-        var description = button.data('description');
-        var amount = button.data('amount');
-        var index = button.data('index');
-
-        var modal = $(this);
-        modal.find('#editDate').val(date);
-        modal.find('#editCategory').val(category);
-        modal.find('#editDescription').val(description);
-        modal.find('#editAmount').val(amount);
-        modal.find('[name=index]').val(index);
-    });
+$('#editExpenseModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var index = button.data('index');
+    var modal = $(this);
+    $.get( "/api/v1/wydatki/"+index, function( data ) {
+        wydatek = JSON.parse(data)
+        modal.find('#editDate').val(wydatek.date);
+        modal.find('#editCategory').val(wydatek.kategoria);
+        modal.find('#editDescription').val(wydatek.opis);
+        modal.find('#editAmount').val(wydatek.kwota);
+        modal.find('#editSubmit').attr('data-index', index);
+    })
+});
 
 
-    $('#deleteExpenseModal').on('show.bs.modal', function (event) {
+$('#deleteExpenseModal').on('show.bs.modal', function (event) {
 
-        var button = $(event.relatedTarget);
-        var date = button.data('date');
-        var category = button.data('category');
-        var description = button.data('description');
-        var amount = button.data('amount');
-        var index = button.data('index');
+    var button = $(event.relatedTarget);
+    var index = button.data('index');
+    var modal = $(this);
 
+    $.get( "/api/v1/wydatki/"+index, function( data ) {
+        wydatek = JSON.parse(data)
+        modal.find('#deleteDate').text(wydatek.date);
+        modal.find('#deleteCategory').text(wydatek.kategoria);
+        modal.find('#deleteDescription').text(wydatek.opis);
+        modal.find('#deleteAmount').text(wydatek.kwota);
+        modal.find('#deleteSubmit').attr('data-index', index);
 
-        var modal = $(this);
-        modal.find('#deleteDate').text(date);
-        modal.find('#deleteCategory').text(category);
-        modal.find('#deleteDescription').text(description);
-        modal.find('#deleteAmount').text(amount);
-        modal.find('[name=index]').val(index);
+    })
 
-    });
+});
 });

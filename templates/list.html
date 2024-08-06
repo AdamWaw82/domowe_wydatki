@@ -14,20 +14,7 @@
                     <th>Akcje</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for field in lista_wydatkow %}
-                <tr>
-                    <td>{{field.date}}</td>
-                    <td>{{field.kategoria}}</td>
-                    <td>{{field.opis}}</td>
-                    <td>{{field.kwota}}</td>
-                    <td>
-                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#viewExpenseModal"  data-date="{{field.date}}" data-category="{{field.kategoria}}" data-description="{{field.opis}}" data-amount="{{field.kwota}}"   >Podgląd</button>
-                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editExpenseModal"   data-index="{{loop.index}}" data-date="{{field.date}}" data-category="{{field.kategoria}}" data-description="{{field.opis}}" data-amount="{{field.kwota}}"   >Edytuj</button>
-                        <button class="btn btn-danger btn-sm"  data-toggle="modal" data-target="#deleteExpenseModal" data-index="{{loop.index}}" data-date="{{field.date}}" data-category="{{field.kategoria}}" data-description="{{field.opis}}" data-amount="{{field.kwota}}" >Usuń</button>
-                    </td>
-                </tr>
-                {% endfor %}
+            <tbody id="listBody">
             </tbody>
         </table>
     </div>

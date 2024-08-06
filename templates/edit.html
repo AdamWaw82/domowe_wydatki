@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editExpenseForm" action="/edit" method="post">
+                <form id="editExpenseForm" >
                     {{ form.hidden_tag() }}
                     <div class="form-group">
                         <label for="editDate">Data:</label>
@@ -33,9 +33,8 @@
                         <label for="editAmount">Kwota:</label>
                         <input type="number" id="editAmount" name="kwota" class="form-control" step="0.01" required>
                     </div>
-                    <input type="hidden" name="index" />
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                        <button id="editSubmit" type="submit" class="btn btn-primary" data-index='' >Zapisz zmiany</button>
                     </div>
                 </form>
             </div>

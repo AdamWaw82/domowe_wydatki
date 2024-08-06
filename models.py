@@ -1,7 +1,7 @@
 import json
 
 
-class Wydatki():
+class Wydatki:
     wydatki_list = []
 
     def __init__(self):
@@ -27,11 +27,15 @@ class Wydatki():
 
     def remove(self, id):
         del self.wydatki_list[id]
+        self.save_all()
+        return True
 
     def get(self, id):
         return self.wydatki_list[id]
 
-    def update(self, id, data):
+    def modify(self, index, data):
         data.pop('csrf_token')
-        self.wydatki_list[id] = data
+        print(self.wydatki_list[index])
+        self.wydatki_list[index] = data
         self.save_all()
+        return True

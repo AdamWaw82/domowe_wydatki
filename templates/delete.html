@@ -8,14 +8,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="deleteExpenseForm" action="/delete" method="post"  >
+                <form id="deleteExpenseForm"  >
                     <p><strong>Data:</strong> <span id="deleteDate"></span></p>
                     <p><strong>Kategoria:</strong> <span id="deleteCategory"></span></p>
                     <p><strong>Opis:</strong><span id="deleteDescription"></span></p>
                     <p><strong>Kwota:</strong><span id="deleteAmount"></span> PLN</p>
-                    <input type="hidden"  name="index" />
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Usuń wpis</button>
+                        <button id='deleteSubmit' type="submit" class="btn btn-primary" data-index='' >Usuń wpis</button>
                     </div>
                 </form>
             </div>

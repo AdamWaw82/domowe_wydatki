@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="addExpenseForm" action="/" method="post">
+                <form id="addExpenseForm" action="/api/v1/wydatki" method="post">
                     {{ form.hidden_tag() }}
                     {% for field in form if field.widget.input_type != 'hidden' %}
                     <div class="form-group">
